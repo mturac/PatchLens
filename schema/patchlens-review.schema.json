@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/mturac/PatchLens/main/schema/patchlens-review.schema.json",
+  "title": "PatchLens Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "createdAt",
+    "patch",
+    "findings",
+    "summary",
+    "reviewHash"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "patch": {
+      "type": "object",
+      "required": [
+        "hash",
+        "files",
+        "additions",
+        "deletions"
+      ],
+      "properties": {
+        "hash": {
+          "type": "string",
+          "pattern": "^sha256:"
+        },
+        "files": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "additions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "deletions": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "severity",
+          "title",
+          "evidence"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^PL[0-9]{3}_"
+          },
+          "severity": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "high",
+        "medium",
+        "low",
+        "verdict"
+      ],
+      "properties": {
+        "high": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "medium": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "low": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "verdict": {
+          "enum": [
+            "pass",
+            "review",
+            "block"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "reviewHash": {
+      "type": "string",
+      "pattern": "^sha256:"
+    }
+  }
+}

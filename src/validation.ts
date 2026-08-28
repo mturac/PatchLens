@@ -1,0 +1,2 @@
+import {PatchLensError} from "./errors.js";import type {PatchLensReview} from "./types.js";
+export function assertReview(value:unknown):asserts value is PatchLensReview{if(!value||typeof value!=="object"||Array.isArray(value))throw new PatchLensError("PL_REVIEW","Review must be an object.");const r=value as Record<string,unknown>;if(r.schemaVersion!=="1"||typeof r.reviewHash!=="string"||!r.reviewHash.startsWith("sha256:")||!Array.isArray(r.findings))throw new PatchLensError("PL_REVIEW","Invalid PatchLens review.");}
