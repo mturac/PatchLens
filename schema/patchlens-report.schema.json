@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://github.com/mturac/PatchLens/schema/patchlens-report.schema.json",
+  "title":"PatchLens review report",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schemaVersion","generator","repository","range","stats","findings","verdict","reportHash"],
+  "properties":{
+    "schemaVersion":{"const":"1"},
+    "generator":{"type":"object"},
+    "repository":{"type":"string"},
+    "range":{"type":"string"},
+    "stats":{"type":"object"},
+    "findings":{"type":"array"},
+    "verdict":{"enum":["pass","warn","fail"]},
+    "reportHash":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}
