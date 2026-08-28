@@ -1,0 +1,12 @@
+name: Bug report
+description: Report a reproducible PatchLens defect
+title: "bug: "
+body:
+  - type: textarea
+    id: diff
+    attributes: { label: Minimal diff, description: Remove all secrets and private source before posting. }
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes: { label: Expected finding or behavior }
+    validations: { required: true }

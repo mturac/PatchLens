@@ -1,0 +1,28 @@
+{
+  "name": "@mturac/patchlens",
+  "version": "0.1.0",
+  "description": "Deterministic risk review for AI-generated patches and coding-agent diffs.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Mehmet Turac",
+  "repository": { "type": "git", "url": "git+https://github.com/mturac/PatchLens.git" },
+  "bugs": { "url": "https://github.com/mturac/PatchLens/issues" },
+  "homepage": "https://github.com/mturac/PatchLens#readme",
+  "keywords": ["vibe-coding","coding-agent","ai-code-review","diff-review","patch-analysis","security","codex","claude-code"],
+  "engines": { "node": ">=22" },
+  "files": ["bin/","dist/","schema/","examples/","README.md","LICENSE","NOTICE","CHANGELOG.md"],
+  "bin": { "patchlens": "./bin/patchlens.mjs" },
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "npm run build && node --check bin/patchlens.mjs",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "test:types": "tsc -p tsconfig.type-tests.json",
+    "verify:schema": "node scripts/verify-schema.mjs",
+    "verify:assets": "node scripts/verify-assets.mjs",
+    "verify:package": "node scripts/package-smoke.mjs",
+    "verify": "npm run check && npm run test:types && node --test test/*.test.mjs && npm run verify:schema && npm run verify:assets && npm run verify:package"
+  },
+  "devDependencies": { "typescript": "5.8.3" }
+}

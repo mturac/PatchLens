@@ -1,0 +1,12 @@
+diff --git a/src/billing/webhook.ts b/src/billing/webhook.ts
+--- a/src/billing/webhook.ts
++++ b/src/billing/webhook.ts
+@@ -1 +1,2 @@
+ export const handler = () => {};
++export const saveSubscription = () => {};
+diff --git a/schema/subscriptions.sql b/schema/subscriptions.sql
+--- a/schema/subscriptions.sql
++++ b/schema/subscriptions.sql
+@@ -1 +1,2 @@
+ CREATE TABLE subscriptions(id text);
++ALTER TABLE subscriptions ADD COLUMN plan text;

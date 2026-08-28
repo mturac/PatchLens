@@ -1,0 +1,3 @@
+import type {PatchLensReview,ReviewComparison} from "./types.js";
+function key(f:PatchLensReview["findings"][number]):string{return `${f.code}:${f.path??"<patch>"}`;}
+export function compareReviews(before:PatchLensReview,after:PatchLensReview):ReviewComparison{const a=new Set(before.findings.map(key)),b=new Set(after.findings.map(key));return{changed:before.reviewHash!==after.reviewHash,beforeHash:before.reviewHash,afterHash:after.reviewHash,addedFindings:[...b].filter(x=>!a.has(x)).sort(),removedFindings:[...a].filter(x=>!b.has(x)).sort(),severityDelta:{high:after.summary.high-before.summary.high,medium:after.summary.medium-before.summary.medium,low:after.summary.low-before.summary.low}};}
