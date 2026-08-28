@@ -1,0 +1,23 @@
+name: Rule proposal
+description: Propose a deterministic evidence-backed review rule
+title: "rule: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: failure
+    attributes:
+      label: Delivery failure pattern
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Deterministic evidence and false-positive boundary
+    validations:
+      required: true
+  - type: input
+    id: severity
+    attributes:
+      label: Proposed default severity
+    validations:
+      required: true
