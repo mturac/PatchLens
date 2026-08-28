@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   materialize:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -27,7 +28,7 @@ jobs:
         run: |
           set -euo pipefail
           cat .bootstrap/chunks/part.* | tr -d '\r\n' | base64 --decode > /tmp/patchlens-source.tar.gz
-          echo "1175ed574e58615e9c52336ba97f655090fb7d1745ac876bb3200a75c7cb5a7c  /tmp/patchlens-source.tar.gz" | sha256sum --check --strict
+          echo "3a69bb1007ca06e0b34fe26cbe87b36788a286ebd7f9e02039de43e8b71267c4  /tmp/patchlens-source.tar.gz" | sha256sum --check --strict
           tar -tzf /tmp/patchlens-source.tar.gz > /tmp/patchlens-files.txt
           grep -Fxq './package.json' /tmp/patchlens-files.txt
           grep -Fxq './src/review.ts' /tmp/patchlens-files.txt
