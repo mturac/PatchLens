@@ -1,0 +1,5 @@
+{
+  "description":"Deterministic evidence-based review for AI-generated code changes.",
+  "homepage":"https://github.com/mturac/PatchLens#readme",
+  "topics":["ai-code-review","coding-agent","vibe-coding","git-diff","static-analysis","developer-tools","sarif","typescript"]
+}
