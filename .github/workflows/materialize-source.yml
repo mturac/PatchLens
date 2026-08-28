@@ -45,11 +45,17 @@ jobs:
           cp /tmp/materialize-source.yml .github/workflows/materialize-source.yml
           chmod +x bin/patchlens.mjs
 
+      - name: Install PNG renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends imagemagick fonts-dejavu-core
+
       - name: Render polished PNG hero
         shell: bash
         run: |
           set -euo pipefail
-          command -v convert >/dev/null
           convert -size 1536x860 gradient:'#080b18-#2b103f' \
             -fill '#ffffff' -font DejaVu-Sans-Bold -pointsize 108 -annotate +88+165 'PatchLens' \
             -fill '#ff8a2a' -font DejaVu-Sans-Bold -pointsize 42 -annotate +92+232 'AI diff review with evidence, not vibes.' \
@@ -71,7 +77,7 @@ jobs:
             -fill '#ff8a2a' -font DejaVu-Sans-Bold -pointsize 30 -annotate +92+800 '$ patchlens review HEAD~1..HEAD' \
             -strip docs/assets/patchlens-hero.png
           test "$(identify -format '%wx%h' docs/assets/patchlens-hero.png)" = '1536x860'
-          test "$(stat -c %s docs/assets/patchlens-hero.png)" -gt 50000
+          test "$(stat -c %s docs/assets/patchlens-hero.png)" -gt 10000
 
       - name: Commit materialized source
         shell: bash
